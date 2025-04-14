@@ -29,6 +29,26 @@ This project scrapes detailed football statistics from [FBref](https://fbref.com
 
 ---
 
+# 🎯 Problem Statement & Solution
+
+### 📌 The Problem
+Football clubs, especially in competitive leagues in England, face increasing pressure to make data-driven decisions regarding recruitment, performance analysis, and match strategy. However, many clubs lack accessible and centralized platforms that collect, transform, and visualize comprehensive player and team data consistently and reliably.
+This often leads to:
+1. Fragmented data across multiple sources.
+2. Manual reporting and analysis.
+3. Missed insights in scouting and performance tracking.
+4. Inefficiencies in the data pipeline and lack of automation.
+
+### ✅ The Solution
+- The **Brentford Data Analytics** project solves these challenges by building a complete end-to-end modern data stack using open-source tools and cloud infrastructure.
+
+- With this architecture, **Brentford FC** (or any other club) can:
+  1. Compare players across the league using consistent metrics.
+  2. Evaluate team and player performance over time.
+  3. Automate workflows and focus on tactical and strategic decision-making.
+
+---
+
 ## 🚀 Tech Stack
 
 | Layer             | Tool/Technology        |
