@@ -40,12 +40,12 @@ This often leads to:
 4. Inefficiencies in the data pipeline and lack of automation.
 
 ### ✅ The Solution
-- The **Brentford Data Analytics** project solves these challenges by building a complete end-to-end modern data stack using open-source tools and cloud infrastructure.
+The **Brentford Data Analytics** project solves these challenges by building a complete end-to-end modern data stack using open-source tools and cloud infrastructure.
 
-- With this architecture, **Brentford FC** (or any other club) can:
-  1. Compare players across the league using consistent metrics.
-  2. Evaluate team and player performance over time.
-  3. Automate workflows and focus on tactical and strategic decision-making.
+With this architecture, **Brentford FC** (or any other club) can:
+1. Compare players across the league using consistent metrics.
+2. Evaluate team and player performance over time.
+3. Automate workflows and focus on tactical and strategic decision-making.
 
 ---
 
