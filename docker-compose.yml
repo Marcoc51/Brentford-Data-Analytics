@@ -1,0 +1,67 @@
+services:
+  postgres:
+    image: postgres:14
+    restart: on-failure
+    container_name: postgres
+    env_file:
+      - .env
+    ports:
+      - "${HOST_PORT}:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_SCHEMA}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: on-failure
+    container_name: pgadmin
+    ports:
+      - "${PGADMIN_PORT}:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+  
+  airflow:
+    image: apache/airflow:2.9.1-python3.10
+    container_name: airflow
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_SCHEMA}
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW_UID=50000
+      - AIRFLOW_VAR_DBT_PROFILES_DIR=/opt/airflow/.dbt
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./etl_pipeline:/opt/airflow/etl_pipeline
+      - ./snowflake_dbt:/opt/airflow/snowflake_dbt
+      - ./airflow/config:/opt/airflow/config
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/.env:/opt/airflow/.env
+      - ./airflow/.dbt:/opt/airflow/.dbt
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "
+        airflow db init &&
+        airflow users create --username airflow --password airflow --firstname Brentford --lastname FC --role Admin --email admin@brentford.com &&
+        airflow webserver &
+        airflow scheduler
+      "
+
+  airflow_scheduler:
+    image: apache/airflow:2.9.1
+    container_name: airflow_scheduler
+    restart: always
+    depends_on:
+      - airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+    command: airflow scheduler

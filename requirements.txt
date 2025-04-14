@@ -1,0 +1,13 @@
+selenium
+webdriver-manager
+pandas
+sqlalchemy
+psycopg2-binary
+python-dotenv
+openpyxl
+requests
+lxml
+beautifulsoup4
+dlt[snowflake,sql-database]>=1.9.0
+dbt-core 
+dbt-snowflake

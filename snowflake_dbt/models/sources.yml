@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: dwh
+    schema: bronze
+    tables:
+      - name: stg_Advanced_Goalkeeping
+      - name: stg_Defensive_Actions
+      - name: stg_Goal_Shot_Creation
+      - name: stg_Goalkeeping
+      - name: stg_Miscellaneous_Stats
+      - name: stg_Pass_Types
+      - name: stg_Passing
+      - name: stg_Playing_Time
+      - name: stg_Possession
+      - name: stg_Scores_Fixtures
+      - name: stg_Shooting
+      - name: stg_Standard_Stats

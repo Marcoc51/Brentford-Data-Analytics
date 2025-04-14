@@ -1,0 +1,22 @@
+# ignore secrets, virtual environments and typical python compilation artifacts
+secrets.toml
+
+# ignore basic python artifacts
+.env
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+**/v-env/
+
+# ignore duckdb
+*.duckdb
+*.wal
+
+# ignore dbt artifacts
+**/target/
+**/dbt_packages/
+**/logs/
+
+**/.vscode/
+**/BI/
+**/Logos/
